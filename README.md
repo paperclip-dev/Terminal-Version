@@ -4,6 +4,7 @@ Okay I have finaly got a semi-fully functional version of the program running in
 
 Note:
 I have removed the Staff Class, All staff classes are now stand alone.
+Please follow my formating as best possible - im pretty sure this is how he wants it.
 
 
 What needs doing:
