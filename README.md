@@ -6,6 +6,8 @@ Note:
 I have removed the Staff Class, All staff classes are now stand alone.
 Please follow my formating as best possible - im pretty sure this is how he wants it.
 
+There is a test person for each of the people classes held in index 0 if you need to test.
+
 
 What needs doing:
 
