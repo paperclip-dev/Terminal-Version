@@ -21,3 +21,17 @@ What needs doing:
 
 
 Finaly please update the notes at the top of each class for classes you have created or updated
+
+Dewi's changes:
+
+  Main class:
+  Changing the customerID search input so it turns into an int, incase user types either the full ID (e.g. C1) or just a number.
+  Added some comments.
+
+  Customer class:
+  Can now store multiple instances of customers in an arrayList.
+  Changed a couple variables from static to non-static.
+
+  Booking class:
+  Can now store multiple instances of bookings in an arrayList.
+  Changed a couple variables from static to non-static.
