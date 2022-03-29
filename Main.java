@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 /*--------------INFO--------------------
 		Author: D Connolly (2128770)
+		Updated by: D Kalsi (909298)
+			"Searching for customer ID and added comments"
 ----------------------------------------*/
 
 public class Main {
@@ -38,20 +40,31 @@ public class Main {
 				System.out.println("1. Yes");
 				System.out.println("2. No");
 				a = scan.nextInt();
+				scan.nextLine();
+				
+				//Existing Customer
 				if(a == 1) {
 					System.out.println("please enter your customer number: ");
-					int c = scan.nextInt();
+					
+					String c = stscan.nextLine();
+					String cNum = c.replaceAll("[^0-9]", "");					//Extracts the only the digits from the string
+					int cInt = Integer.parseInt(cNum);
+					
 					System.out.println("Are these details correct? ");
-					Customer.printCustomer(c);
+					Customer.printCustomer(cInt);
 					System.out.println("1. Yes");
 					System.out.println("2. No");
 					a = scan.nextInt();
+					
+					//Correct Customer Details
 					if(a == 1) {
 						System.out.println("please select from the following options:");
 						System.out.println("1. Create Booking");
 						System.out.println("2. Order for Collection");
 						System.out.println("3. Order for Delivery");
 						a = scan.nextInt();
+						
+						//Creating Booking
 						if(a == 1) {
 							System.out.println("How many people is the booking for?");
 							a = scan.nextInt();
@@ -60,11 +73,12 @@ public class Main {
 							System.out.println("please enter what time you would like the booking for: (format: hh:mm)");
 							String d = stscan.nextLine();
 							
-							Booking book1 = new Booking(c, a, b, d); // This needs to be changed in order to create a new instance each time!
+							Booking book1 = new Booking(cInt, a, b, d); // This needs to be changed in order to create a new instance each time!
 							Booking.addBook(book1);
 							a = 0;
 							//System.out.println(Booking.getBooking(0).getGuestNum());
-						}
+						}						
+						//Creating Collection Order
 						if(a == 2) {
 							System.out.println("What would you like to order?");
 							Menu.printItems();
@@ -84,13 +98,14 @@ public class Main {
 								
 							}
 							more = true;
-							TakeAway take1 = new TakeAway(Customer.getCustomer(c));	//<------------- needs changed to create new instance
+							TakeAway take1 = new TakeAway(Customer.getCustomer(cInt));	//<------------- needs changed to create new instance
 							TakeAway.addTakeAway(take1);
 							System.out.println("Thanks, your order ID is: " + TakeAway.getID());
 							System.out.println("--Order Items--");
 							System.out.println(TakeAway.getItems());
 							System.out.println("Order ready for collection in: 30 minutes. ");
-						}
+						}						
+						//Creating Delivery Order
 						if(a == 3) {
 							System.out.println("What would you like to order?");
 							Menu.printItems();
@@ -110,7 +125,7 @@ public class Main {
 								
 							}
 							more = true;
-							Delivery deliver1 = new Delivery(Customer.getCustomer(c));		//<------------- needs changed to create new instance
+							Delivery deliver1 = new Delivery(Customer.getCustomer(cInt));		//<------------- needs changed to create new instance
 							Delivery.addDelivery(deliver1);
 							System.out.println("Thanks, your order ID is: " + Delivery.getID());
 							System.out.println("--Order Items--");
@@ -119,7 +134,8 @@ public class Main {
 						}
 					}
 				}
-				else if(a == 2) {
+				// Creating New Customer
+				else if(a == 2) {															
 					System.out.println("Please enter your First name. ");
 					String b = stscan.nextLine();
 					System.out.println("Please enter your Second name. ");
@@ -128,10 +144,10 @@ public class Main {
 					String d = stscan.nextLine();
 					Customer cust1 = new Customer(b, c, d);	//<------------- needs changed to create new instance
 					Customer.addCustomer(cust1);
-					System.out.println("Thank you, Your customer ID is: " + Customer.getID());
+					System.out.println("Thank you, Your customer ID is: " + cust1.getID());
 				}
 				
-			}
+			}			
 			// The Staff System
 			else if(a == 2) {
 				System.out.println("Job?");
@@ -140,11 +156,15 @@ public class Main {
 				System.out.println("3. Waiter");
 				System.out.println("4. Driver");
 				a = scan.nextInt();
+				
+				// Manager
 				if(a == 1) {
 					System.out.println("Hello " + Manager.getManagerID());
 					System.out.println("Please choose from the following options: ");
 					System.out.println("1. Add hours worked");
 					a = scan.nextInt();
+					
+					// Adding Hours Worked
 					if(a == 1) {
 						System.out.println("Who's hours would you like to add to?");
 						System.out.println("1. Manager");
@@ -152,6 +172,8 @@ public class Main {
 						System.out.println("3. Waiter");
 						System.out.println("4. Driver");
 						a = scan.nextInt();
+						
+						// Manager Hours
 						if(a == 1) {
 							System.out.println("These are the Managers: ");
 							Manager.printAllManagers();
@@ -163,6 +185,7 @@ public class Main {
 							Manager.getManager(c).addHrs(a);
 							System.out.println(Manager.getManager(c).getManagerID() + " hours have now been updated.");
 						}
+						// Chef Hours
 						else if(a == 2) {
 							System.out.println("These are the Chefs: ");
 							Chef.printAllChefs();
@@ -174,6 +197,7 @@ public class Main {
 							Chef.getChef(c).addHrs(a);
 							System.out.println(Chef.getChef(c).getChefID() + " hours have now been updated.");
 						}
+						// Waiter Hours
 						else if(a == 3) {
 							System.out.println("These are the Waiters: ");
 							Waiter.printAllWaiters();
@@ -185,6 +209,7 @@ public class Main {
 							Waiter.getWaiter(c).addHrs(a);
 							System.out.println(Waiter.getWaiter(c).getWaiterID() + " hours have now been updated.");
 						}
+						// Driver Hours
 						else if(a == 4) {
 							System.out.println("These are the Drivers: ");
 							Driver.printAllDrivers();
@@ -198,11 +223,14 @@ public class Main {
 						}
 					}
 				}
+				// Chef
 				else if(a == 2) {
 					System.out.println("Are you an existing Chef?");
 					System.out.println("1. Yes");
 					System.out.println("2. No");
 					a = scan.nextInt();
+					
+					// Existing Chef
 					if(a == 1) {
 						System.out.println("Please enter your Chef number: ");
 						int c = scan.nextInt();
@@ -244,6 +272,7 @@ public class Main {
 						System.out.println("Please see the manager to be added to system. ");
 					}
 				}
+				// Waiter
 				else if(a == 3) {
 					System.out.println("Please enter your Waiter number: ");
 					int c = scan.nextInt();
@@ -288,6 +317,7 @@ public class Main {
 						System.out.println("Please see the manager to be added to system. ");
 					}
 				}
+				// Driver
 				else if(a == 4) {
 					System.out.println("Please enter your Driver number: ");
 					int c = scan.nextInt();

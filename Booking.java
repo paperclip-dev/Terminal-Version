@@ -6,22 +6,23 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /*--------------INFO--------------------
-		Author: 
+		Author: D Kalsi (909298)
 		Updated by: D Connolly (2128770)
 ----------------------------------------*/
 
 public class Booking {
 	
-	private static ArrayList<Booking> bookings = new ArrayList<>();
+	private static ArrayList<Booking> bookings = new ArrayList<Booking>();
 	private int numGuest;
 	private String date;
 	private String time;
-	private static String id;
+	private String id;
+	private String custID;
 	private int duration;
 	private boolean approved;
 	private boolean confirmation;
 	
-	int count = 0;
+	private static int count = 0;
 	/*
 	//Formats the date and time to day/month/year and hour:minutes 
 	private SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm");
@@ -29,6 +30,7 @@ public class Booking {
 		
 	public Booking(int customerID, int guest, String date, String time) {
 		this.id = "B" + count;
+		custID = "C" + customerID;
 		numGuest = guest;
 		this.date = date;
 		this.time = time;
@@ -45,7 +47,7 @@ public class Booking {
 	endDate.getTime() + "\nDuration: " + duration + " hour\nApproved: " + approved ;
 	}
 	*/
-	public static String getID() {
+	public String getID() {
 		return id;
 	}
 	
@@ -81,6 +83,7 @@ public class Booking {
 	public static void addBook(Booking b) {
 		bookings.add(b);
 	}
+	
 	public static Booking getBooking(int i) {
 		return bookings.get(i);
 	}

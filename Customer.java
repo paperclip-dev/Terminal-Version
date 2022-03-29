@@ -3,14 +3,16 @@ import java.util.Collections;
 
 /*--------------INFO--------------------
 		Author: D Connolly (2128770)
+		Updated by: D Kalsi (909298)
+			"I've changes 'address' and 'id' from static to non-static" 
 ----------------------------------------*/
 
 public class Customer extends User {
 	
-	private static ArrayList<Customer> customers = new ArrayList<>();
-	private static String address;
+	private static ArrayList<Customer> customers = new ArrayList<Customer>();
+	private String address;
 	private static int num = 0;
-	private static String id = "C" + num; 
+	private String id = "C" + num; 
 	
 	// creates an example customer
 	static {
@@ -32,11 +34,11 @@ public class Customer extends User {
 	}
 	
 	// return customer ID
-	public static String getID() {
+	public String getID() {
 		return id;
 	}
 	
-	public static String getAddress() {
+	public String getAddress() {
 		return address;
 	}
 	
