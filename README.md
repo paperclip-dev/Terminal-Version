@@ -35,3 +35,8 @@ Dewi's changes:
   Booking class:
   Can now store multiple instances of bookings in an arrayList.
   Changed a couple variables from static to non-static.
+  
+  Table class:
+  Added new method to read text file containing info to creat new table objects.
+  https://stackoverflow.com/questions/36973345/create-object-in-an-arraylist-from-textfile-input-in-java
+  IMPORTANT - for this to work, the tableList.txt file must be in the project folder. Not the src folder.
