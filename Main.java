@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -5,13 +6,16 @@ import java.util.Scanner;
 /*--------------INFO--------------------
 		Author: D Connolly (2128770)
 		Updated by: D Kalsi (909298)
-			"Searching for customer ID and added comments"
 ----------------------------------------*/
 
 public class Main {
-	public static void main(String[] args) {
 	
-	
+		
+	public static void main(String[] args) throws FileNotFoundException {
+		
+		Table.readFile();
+		
+		
 		int a;
 		boolean run = true;
 		boolean more = true;
@@ -19,6 +23,7 @@ public class Main {
 		
 		
 		while(run == true) {
+									
 			System.out.println("--------------------------------");
 			System.out.println("	Welcome to Cafe94!");
 			System.out.println("--------------------------------");
@@ -47,8 +52,8 @@ public class Main {
 					System.out.println("please enter your customer number: ");
 					
 					String c = stscan.nextLine();
-					String cNum = c.replaceAll("[^0-9]", "");					//Extracts the only the digits from the string
-					int cInt = Integer.parseInt(cNum);
+					String cNum = c.replaceAll("[^0-9]", "");					//[^0-9] Extracts the only the digits from the string
+					int cInt = Integer.parseInt(cNum);							//in case user enters e.g. 'C1', rather than '1'
 					
 					System.out.println("Are these details correct? ");
 					Customer.printCustomer(cInt);
@@ -75,8 +80,10 @@ public class Main {
 							
 							Booking book1 = new Booking(cInt, a, b, d); // This needs to be changed in order to create a new instance each time!
 							Booking.addBook(book1);
+							book1.setTable(book1);
+							
 							a = 0;
-							//System.out.println(Booking.getBooking(0).getGuestNum());
+							System.out.println(book1.toString());
 						}						
 						//Creating Collection Order
 						if(a == 2) {
@@ -144,6 +151,7 @@ public class Main {
 					String d = stscan.nextLine();
 					Customer cust1 = new Customer(b, c, d);	//<------------- needs changed to create new instance
 					Customer.addCustomer(cust1);
+					//Customer.writeFile(cust1);
 					System.out.println("Thank you, Your customer ID is: " + cust1.getID());
 				}
 				
@@ -162,6 +170,7 @@ public class Main {
 					System.out.println("Hello " + Manager.getManagerID());
 					System.out.println("Please choose from the following options: ");
 					System.out.println("1. Add hours worked");
+					System.out.println("2. All tables");
 					a = scan.nextInt();
 					
 					// Adding Hours Worked
@@ -221,6 +230,9 @@ public class Main {
 							Driver.getDriver(c).addHrs(a);
 							System.out.println(Driver.getDriver(c).getID() + " hours have now been updated.");
 						}
+					}
+					if (a == 2) {
+						Table.printTables();
 					}
 				}
 				// Chef
