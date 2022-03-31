@@ -33,6 +33,18 @@ public class Table {
 		return available;
 	}
 	
+	public int getNumber() {
+		return tableNum;
+	}
+	
+	public int getSeats() {
+		return numSeats;
+	}
+	
+	public static ArrayList<Table> getTables(){
+		return tables;
+	}
+	
 	//Prints all tables
 	public static void printTables() {
 		for (Table table: tables) {
@@ -49,11 +61,19 @@ public class Table {
 	
 	//Sets the booking to the table while also checking whether it already contains a booking or not
 	public void setBooking(Booking booked) {
-		if (booking.size() < 1) {
-			booking.add(booked);
-			available = false;
+		for  (Table table: Table.getTables()) {
+			if(booked.getTable() == table.getNumber()) {
+				if (booking.size() < 1) {
+					booking.add(booked);
+					available = false;
+				}
+				else {
+					System.out.println("This table is already booked");
+				}
+			}
 		}
-		System.out.println("This table is already booked");
+		
+		
 	}
 
 	//Removes the booking assigned to the table while also checking whether it already contains a booking or not
@@ -76,7 +96,7 @@ public class Table {
 				tables.add(new Table(Integer.parseInt(info[0]), Integer.parseInt(info[1])));
 			} 
 			catch (Exception e) {
-				System.out.println("Error bruv...");
+				System.out.println("Error loading tabkes... ");
 			}
 			
 		}

@@ -21,6 +21,7 @@ public class Booking {
 	private int duration;
 	private boolean approved;
 	private boolean confirmation;
+	private int tableNum;
 	
 	private static int count = 0;
 	/*
@@ -36,6 +37,7 @@ public class Booking {
 		this.time = time;
 		duration = 1;
 		approved = false;
+		tableNum = tableNumber();
 		confirmation = true;
 		System.out.println("Thanks, your booking ID is: " + id);
 		count++;
@@ -47,12 +49,22 @@ public class Booking {
 	endDate.getTime() + "\nDuration: " + duration + " hour\nApproved: " + approved ;
 	}
 	*/
+	@Override
+	public String toString() {
+		return "Booking ID: " + id + "\nCustomer ID" + "\nDate: " + date + "\nTime: " + 
+	time + "\nDuration: " + duration + " hour\nTable number: " +tableNum + "\nApproved: " + approved ;
+	}
+	
 	public String getID() {
 		return id;
 	}
 	
 	public int getGuestNum() {
 		return numGuest;
+	}
+	
+	public int getTable() {
+		return tableNum;
 	}
 	
 	public int getDuration() {
@@ -87,7 +99,29 @@ public class Booking {
 	public static Booking getBooking(int i) {
 		return bookings.get(i);
 	}
+		
+	private int tableNumber() {
+		int num = 0;
+		
+		for (Table table: Table.getTables()) {
+			if (numGuest <= table.getSeats() && table.getAvailability() == true) {
+				num = table.getNumber();
+				break;
+			}
+		}
+		return num;
+	}
 	
+	public void setTable(Booking b) {
+		
+		for (Table table: Table.getTables()) {
+			if (numGuest <= table.getSeats() && table.getAvailability() == true) {
+				tableNum = table.getNumber();
+				table.setBooking(b);
+				break;
+			}
+		}
+	}
 	
 	/*
 	//Method to parse a String to a Calendar variable to give the date
