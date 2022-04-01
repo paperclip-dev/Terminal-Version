@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Driver extends User {
 	private String driverID;
-	private static ArrayList<Driver> drivers = new ArrayList<>();
+	private static ArrayList<Driver> drivers = new ArrayList<Driver>();
 	private static int num = 0;
 	private static int hrsWorked = 0;
 	private static String sched;
@@ -29,7 +29,7 @@ public class Driver extends User {
 	}
 
        
-	public String getID() {
+	public String getDriverID() {
 		return driverID;
 	}
 	
@@ -55,8 +55,7 @@ public class Driver extends User {
 		System.out.println("Last Name: " + drivers.get(i).getLast());
 		System.out.println("Work Hours: " + drivers.get(i).getHrsWorked());
 		System.out.println("Schedule: " + drivers.get(i).getSched());
-		
-		
+				
 	}
 	
 	public static int getDriversSize(){
@@ -65,8 +64,12 @@ public class Driver extends User {
 	
 	public static void printAllDrivers() {
 		for(int i = 0; i < drivers.size(); i++) {
-			System.out.println(drivers.get(i).getID());
+			System.out.println(drivers.get(i).getDriverID());
 		}
+	}
+	
+	public static void addDriver (Driver d) {
+		drivers.add(d);
 	}
 	
 	/*

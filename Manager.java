@@ -9,7 +9,7 @@ public class Manager extends User {
 	private static String managerID;
 	private static int count = 0;
 	private static int hrsWorked = 0;
-	private static ArrayList<Manager> managers = new ArrayList<>();
+	private static ArrayList<Manager> managers = new ArrayList<Manager>();
 	
 	static {
 		Manager man1 = new Manager("John", "Bull");
@@ -39,6 +39,10 @@ public class Manager extends User {
 		for(int i = 0; i < managers.size(); i++) {
 			System.out.println(managers.get(i).getManagerID());
 		}
+	}
+	
+	public static void addManager(Manager m) {
+		managers.add(m);
 	}
 	
 	

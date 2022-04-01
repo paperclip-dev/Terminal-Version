@@ -7,10 +7,10 @@ import java.util.ArrayList;
 ----------------------------------------*/
 
 public class Waiter extends User {
-	private static String waiterID;
+	private String waiterID;
 	private static int hrsWorked = 0;
 	static int count = 0;
-	private static ArrayList<Waiter> waiters = new ArrayList<>();
+	private static ArrayList<Waiter> waiters = new ArrayList<Waiter>();
 
 	//example Waiter
 	static {
@@ -24,7 +24,7 @@ public class Waiter extends User {
 		count++;
 	}
 
-	public static String getWaiterID(){
+	public String getWaiterID(){
 		return waiterID;
 	}
 	

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 ----------------------------------------*/
 
 public class Chef extends User {
-	private static String chefID;
-	private static ArrayList<Chef> chefs = new ArrayList<>();
+	private String chefID;
+	private static ArrayList<Chef> chefs = new ArrayList<Chef>();
 	private static int count = 0; //Used to generate unique ID.
 	private static int hrsWorked = 0;
 	
