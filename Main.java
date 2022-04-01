@@ -171,6 +171,9 @@ public class Main {
 					System.out.println("Please choose from the following options: ");
 					System.out.println("1. Add hours worked");
 					System.out.println("2. All tables");
+					System.out.println("3. Add New Chef");
+					System.out.println("4. Add New Waiter");
+					System.out.println("5. Add New Driver");
 					a = scan.nextInt();
 					
 					// Adding Hours Worked
@@ -228,11 +231,44 @@ public class Main {
 							System.out.println("How many hours would you like to add? ");
 							a = scan.nextInt();
 							Driver.getDriver(c).addHrs(a);
-							System.out.println(Driver.getDriver(c).getID() + " hours have now been updated.");
+							System.out.println(Driver.getDriver(c).getDriverID() + " hours have now been updated.");
 						}
 					}
+					// Print all tables
 					if (a == 2) {
 						Table.printTables();
+					}
+					// Create new Chef
+					if (a == 3) {
+						System.out.println("Please enter the new chef's First name. ");
+						String b = stscan.nextLine();
+						System.out.println("Please enter their Second name. ");
+						String c = stscan.nextLine();
+						Chef chef1 = new Chef(b, c);	
+						Chef.addChef(chef1);
+						System.out.println("New chef ID: " + chef1.getChefID());
+					}
+					// Create new Waiter
+					if (a == 4) {
+						System.out.println("Please enter the new waiter's First name. ");
+						String b = stscan.nextLine();
+						System.out.println("Please enter their Second name. ");
+						String c = stscan.nextLine();
+						Waiter waiter1 = new Waiter(b, c);	
+						Waiter.addWaiter(waiter1);
+						System.out.println("New waiter ID: " + waiter1.getWaiterID());
+					}
+					// Create new Driver
+					if (a == 5) {
+						System.out.println("Please enter the new driver's First name. ");
+						String b = stscan.nextLine();
+						System.out.println("Please enter their Second name. ");
+						String c = stscan.nextLine();
+						System.out.println("Please enter their driver schedule (working days). ");
+						String d = stscan.nextLine();
+						Driver driver1 = new Driver(b, c, d);	
+						Driver.addDriver(driver1);
+						System.out.println("New driver ID: " + driver1.getDriverID());
 					}
 				}
 				// Chef
